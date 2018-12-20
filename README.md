@@ -1,1 +1,1 @@
-# wikiglass-analyzer
+# wikiglass-analyzer - a data visulization tool for mediawiki #
