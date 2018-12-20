@@ -26,3 +26,10 @@ For more informatin about conda, please refer to [conda user guide](https://cond
     pip install PyMySQL
 
 For more informatin about pymysql, please refer to [this link](https://pypi.org/project/PyMySQL/)
+
+
+**Step4.** Install ``DBUtils``. DBUtils is a suite of Python modules allowing to connect in a safe and efficient way between a threaded Python application and a database.
+
+    pip install DBUtils
+
+For more informatin about pymysql, please refer to [DBUtils user guide](https://cito.github.io/DBUtils/UsersGuide.html#installation-as-a-standalone-top-level-package)
