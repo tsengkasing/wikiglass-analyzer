@@ -1,4 +1,4 @@
-# Wikiglass-analyzer - a data visulization tool for mediawiki #
+# Wikiglass-analyzer - a data visulization system for mediawiki #
 
 
 ## Installing Virtual Environment and Dependencies ##
