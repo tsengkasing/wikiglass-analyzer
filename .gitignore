@@ -1,4 +1,4 @@
 venv/
-localsettings.conf
-*.DS_Store*
+localsettings.ini
+*.DS_Store
 *__pycache__*
