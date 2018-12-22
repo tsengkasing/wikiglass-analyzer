@@ -25,7 +25,7 @@ class DB_Connector:
         self.conn.close()
 
 
-    #APIs
+    ##### APIs #####
     def config(self, db_host, db_port, db_name, db_username, db_password):
         '''
         If no configuration is specified, it will do auto config,
