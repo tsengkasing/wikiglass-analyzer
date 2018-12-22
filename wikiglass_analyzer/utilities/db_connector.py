@@ -8,11 +8,12 @@ class DB_Connector:
     MySQL Database connector.
     Providing services like inserting, updateing, deleting from the database
     '''
-    def __init__(self, **configuration):
+    def __init__(self, db_host, db_port, db_name, db_username, db_password):
         #Maintaining a database connection pool
-        self.db_connection_pool = self.config(**configuration)
+        self.db_connection_pool = self.config(db_host, db_port, db_name, db_username, db_password)
+
         try:
-            self.conn = self.db_connection_pool.get_conn()
+            self.conn = self.db_connection_pool.get_connection()
             self.cur = self.conn.cursor()
             self.cur.execute("set names utf8;")
             self.commit()
@@ -25,30 +26,33 @@ class DB_Connector:
 
 
     #APIs
-    def config(self, **configuration):
+    def config(self, db_host, db_port, db_name, db_username, db_password):
         '''
         If no configuration is specified, it will do auto config,
         otherwise, it will do customized configuration
 
         '''
         #Do customized configuration
-        host = configuration.get('db_host')
-        port = configuration.get('db_port')
-        db = configuration.get('db_name')
-        user = configuration.get('db_username')
-        password = configuration.get('db_password')
+        conn_args = {
+            'host': db_host,
+            'port': db_port,
+            'db': db_username,
+            'user': db_username,
+            'passwd': db_password,
+            'charset': 'utf8mb4',
+            'cursorclass': pymysql.cursors.DictCursor
+        }
 
         #Setup DB connection pool done!
-        db_connection_pool = DB_ConnectionPool(db_host = host, db_port = port, db_name = db, db_username = user, db_password = password)
+        db_connection_pool = DB_ConnectionPool(conn_args)
         return db_connection_pool
 
     def fetchone(self, sql):
         '''
         Fetch one record from database
         '''
-        self.execute(sql)
-
         try:
+            self.execute(sql)
             result = self.cur.fetchone()
         except Exception as err:
             print("fetchone()/" + sql)
@@ -59,9 +63,8 @@ class DB_Connector:
         '''
          Fetch all records from database
          '''
-        self.execute(sql)
-
         try:
+            self.execute(sql)
             result = self.cur.fetchall()
         except Exception as err:
             print("fetchall()/" + sql)
@@ -77,27 +80,25 @@ class DB_Connector:
             raise err
 
     def commit(self):
-        self.conn.commit()
+        try:
+            self.conn.commit()
+        except Exception as err:
+            print("commit()")
+            raise err
 
     def rollback(self):
-        self.conn.rollback()
+        try:
+            self.conn.rollback()
+        except Exception as err:
+            print("rollback()")
+            raise err
 
 ###########################################################
 class DB_ConnectionPool:
     '''
     A pool of thread safe connection
     '''
-    def __init__(self, db_host, db_port, db_name, db_username, db_password):
-        conn_args = {
-            'host': db_host,
-            'port': db_port,
-            'db': db_username,
-            'user': db_username,
-            'passwd': db_password,
-            'charset': 'utf8mb4',
-            'cursorclass': pymysql.cursors.DictCursor
-        }
-
+    def __init__(self, **conn_args):
         self.__pool = PooledDB(creator=pymysql, mincached=5, maxcached=20, **conn_args)
 
     # Implement singleton pattern with __new__
@@ -106,7 +107,9 @@ class DB_ConnectionPool:
             DB_ConnectionPool._instance = object.__new__(cls)
         return DB_ConnectionPool._instance
 
-    def get_conn(self):
+    ##### APIs #####
+    # Return a database connection pool to the database
+    def get_connection(self):
         conn = self.__pool.connection()
         return conn
 

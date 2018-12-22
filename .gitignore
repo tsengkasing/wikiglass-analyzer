@@ -1,2 +1,3 @@
 venv/
 localsettings.conf
+*.DS_Store
