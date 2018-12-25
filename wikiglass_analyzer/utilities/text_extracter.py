@@ -6,8 +6,9 @@ from html.parser import HTMLParser
 Usage:
 
 text = "<p>Testing</p>\n''hello''\n'''world'''"
-text = TextExtracter.trim(text)
-# text = Testinghelloworld
+length = TextExtracter.len(text)
+# word_list = ['Testing', 'hello', 'world']
+# length = 3
 """
 
 class TextExtracter:
@@ -40,13 +41,25 @@ class TextExtracter:
     @param {string} text
     @return {string} trimmed text
     '''
+    def trim(self):
+        self.trim_html()
+        self.trim_editor_marker()
+        return self.text
     @staticmethod
-    def trim(text):
+    def valid(char):
+        if char == '|':
+            return False
+        elif char == '!':
+            return False
+        elif char == '|-':
+            return False
+        return True
+    @staticmethod
+    def len(text):
         e = TextExtracter(text)
-        e.trim_html()
-        e.trim_editor_marker()
-        e.trim_space()
-        return e.text
+        word_list = e.trim().split( )
+        word_list = [word for word in word_list if TextExtracter.valid(word)]
+        return len(word_list)
 
 class CustomHTMLParser(HTMLParser):
     def __init__(self):
