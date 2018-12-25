@@ -12,10 +12,10 @@ By referencing [this post](https://hackernoon.com/4-ways-to-manage-the-configura
 By comparing the pros and cons, we choose the second way to do configuration for our system.
 
 ## Structure of Configuration Files ##
-
-### localsettings.conf ###
+### localsettings.ini ###
 This configuration file is located at the ``root`` directory of the project. Users of the program can do the following configuration in this file:
 
 1. Database settings
 2. Logger settings
+3. Configuration files path
 

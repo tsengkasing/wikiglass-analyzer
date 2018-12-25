@@ -11,10 +11,10 @@ venv.bak/
 .vscode
 
 # Local Configuration
-localsettings.conf
+localsettings.ini
 
 # MacOS File System
 *.DS_Store
 
-# Cache
-__pycache__
+# pycache
+*__pycache__*

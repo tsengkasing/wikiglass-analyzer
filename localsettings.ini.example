@@ -1,0 +1,32 @@
+# Location of all configuration files excepting this(localsettings.ini)
+# All of the configuration files specified here will be load by
+# [config_reader.py] automatically. Developers should use [config_reader.py]
+# to read any of the configuration.
+# Important Note: Do not specify the localsettings.ini path here! 
+# Declare it as the value of WIKIGLASS_LOCALSETTINGS_PATH environment variable
+# instead.
+[CONFIGURATION_PATH]
+# example_config = /path/to/the/configuration/file
+
+################################################################################
+# Settings for database connection
+# Please remember to grant ALL privileges for the database user
+[WIKIGLASS_DB]
+db_host = localhost
+db_port = 3306
+db_name = wikiglass_db
+db_username = root
+db_password = yourpassword
+
+[BLUESPICE_DB]
+db_host = localhost
+db_port = 3306
+db_name = bluespice_db
+db_username = root
+db_password = yourpassword
+
+
+################################################################################
+# Path to store logs of wikiglass-analyzer
+[LOGGER]
+logfile = /tmp/wikiglass_analyzer.log
