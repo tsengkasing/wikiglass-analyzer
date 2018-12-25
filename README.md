@@ -43,5 +43,5 @@ For more informatin about pymysql, please refer to [DBUtils user guide](https://
 ## Unit Test
 
 ```bash
-$ python -m unittest tests/text_extracter.py
+$ python -m unittest tests/utilities/text_extracter.py
 ```
