@@ -15,3 +15,6 @@ localsettings.conf
 
 # MacOS File System
 *.DS_Store
+
+# Cache
+__pycache__

@@ -46,12 +46,18 @@ class TextExtracter:
         self.trim_editor_marker()
         return self.text
     @staticmethod
-    def valid(char):
-        if char == '|':
+    def is_chinese(word):
+        for char in word:
+            if '\u4e00' <= char <= '\u9fff':
+                return True
+        return False
+    @staticmethod
+    def valid(word):
+        if word == '|':
             return False
-        elif char == '!':
+        elif word == '!':
             return False
-        elif char == '|-':
+        elif word == '|-':
             return False
         return True
     @staticmethod
@@ -59,7 +65,14 @@ class TextExtracter:
         e = TextExtracter(text)
         word_list = e.trim().split( )
         word_list = [word for word in word_list if TextExtracter.valid(word)]
-        return len(word_list)
+        length = 0
+        for i in range(len(word_list)):
+            word = word_list[i]
+            if TextExtracter.is_chinese(word):
+                length += len(word)
+            else:
+                length += 1
+        return length
 
 class CustomHTMLParser(HTMLParser):
     def __init__(self):

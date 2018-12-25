@@ -39,3 +39,9 @@ For more informatin about pymysql, please refer to [this link](https://pypi.org/
     pip install DBUtils
 
 For more informatin about pymysql, please refer to [DBUtils user guide](https://cito.github.io/DBUtils/UsersGuide.html#installation-as-a-standalone-top-level-package)
+
+## Unit Test
+
+```bash
+$ python -m unittest tests/text_extracter.py
+```
