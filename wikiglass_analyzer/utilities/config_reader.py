@@ -48,13 +48,13 @@ class ConfigReader:
         Then, it will automatically load other configuration files
         that are specified in localsetting.ini's [CONFIGURATION_PATH]
         section.
-        Note: The environment variable WIKIGLASS_LOCALSETTINGS_PATH
+        Note: The environment variable WIKIGLASS_ROOT
         must be set.
         '''
         #Find the root directory of wikiglass analyzer
-        env_localsettings_path = os.environ.get('WIKIGLASS_LOCALSETTINGS_PATH', None)
+        env_localsettings_path = os.environ.get('WIKIGLASS_ROOT', None) + "localsettings.ini"
         if not env_localsettings_path:
-            raise ValueError('You must have the WIKIGLASS_LOCALSETTINGS environment variable set')
+            raise ValueError('You must have the WIKIGLASS_ROOT environment variable set')
 
         #Load localsettings.ini
         localsettings_config = self._load_config_file(env_localsettings_path)

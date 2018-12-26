@@ -3,8 +3,7 @@
 # [config_reader.py] automatically. Developers should use [config_reader.py]
 # to read any of the configuration.
 # Important Note: Do not specify the localsettings.ini path here! 
-# Declare it as the value of WIKIGLASS_LOCALSETTINGS_PATH environment variable
-# instead.
+# Please declare the WIKIGLASS_ROOT environment variable
 [CONFIGURATION_PATH]
 # example_config = /path/to/the/configuration/file
 
