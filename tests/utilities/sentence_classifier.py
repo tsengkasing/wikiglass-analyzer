@@ -6,12 +6,6 @@ from wikiglass_analyzer.utilities.sentence_classifier import SentenceClassifier
 
 class TestSentenceClassifier(unittest.TestCase):
     def setUp(self):
-        # Mock Configuration File
-        environ['WIKIGLASS_LOCALSETTINGS_PATH'] = path.normpath(
-            "{}/../../localsettings.ini.example".format(
-                path.dirname(path.realpath(__file__))
-            )
-        )
         self.classifier = SentenceClassifier()
 
     def test_level_1(self):

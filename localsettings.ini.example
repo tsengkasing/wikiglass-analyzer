@@ -34,4 +34,4 @@ logfile = /tmp/wikiglass_analyzer.log
 ################################################################################
 # Path to store model of Sentence Quality
 [SENTENCE_QUALITY_MODEL]
-model_dir = ./assets/sentence_quality_model/
+model_dir = /path/to/sentence_quality_model/
