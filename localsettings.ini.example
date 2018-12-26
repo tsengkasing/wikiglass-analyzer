@@ -30,3 +30,8 @@ db_password = yourpassword
 # Path to store logs of wikiglass-analyzer
 [LOGGER]
 logfile = /tmp/wikiglass_analyzer.log
+
+################################################################################
+# Path to store model of Sentence Quality
+[SENTENCE_QUALITY_MODEL]
+model_dir = /path/to/sentence_quality_model/
