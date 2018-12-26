@@ -35,12 +35,13 @@ class TestSentenceClassifier(unittest.TestCase):
         self.assertEqual(text, sentence)
         self.assertEqual(level, 'level 3')
 
-    def test_long_sentence(self):
+    def test_paragraph(self):
         text = '''
-        在這次專題探究搜集的虐待動物案件之中，我更加了觧到現時虐待動物的情況，
-        現時的人對虐待動物的看灋龢虐待動物者對動物的看灋，我對此感到非常憤怒，
+        在這次專題探究搜集的虐待動物案件之中，我更加了觧到現時虐待動物的情況。
+        現時的人對虐待動物的看灋龢虐待動物者對動物的看灋，我對此感到非常憤怒。
         那羣虐動物者竟然認爲動物是一件翫具，他們竟然當一箇生命是翫具，令我拾分憤慨！
         '''
         result = self.classifier.classify_text(text)
-        _, level = result[0]
-        self.assertEqual(level, 'level 3')
+        self.assertEqual(len(result), 3)
+        for _, level in result:
+            self.assertEqual(level, 'level 2')
