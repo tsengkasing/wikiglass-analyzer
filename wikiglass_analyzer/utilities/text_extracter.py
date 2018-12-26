@@ -6,8 +6,9 @@ from html.parser import HTMLParser
 Usage:
 
 text = "<p>Testing</p>\n''hello''\n'''world'''"
-text = TextExtracter.trim(text)
-# text = Testinghelloworld
+length = TextExtracter.len(text)
+# word_list = ['Testing', 'hello', 'world']
+# length = 3
 """
 
 class TextExtracter:
@@ -40,13 +41,38 @@ class TextExtracter:
     @param {string} text
     @return {string} trimmed text
     '''
+    def trim(self):
+        self.trim_html()
+        self.trim_editor_marker()
+        return self.text
     @staticmethod
-    def trim(text):
+    def is_chinese(word):
+        for char in word:
+            if '\u4e00' <= char <= '\u9fff':
+                return True
+        return False
+    @staticmethod
+    def valid(word):
+        if word == '|':
+            return False
+        elif word == '!':
+            return False
+        elif word == '|-':
+            return False
+        return True
+    @staticmethod
+    def len(text):
         e = TextExtracter(text)
-        e.trim_html()
-        e.trim_editor_marker()
-        e.trim_space()
-        return e.text
+        word_list = e.trim().split( )
+        word_list = [word for word in word_list if TextExtracter.valid(word)]
+        length = 0
+        for i in range(len(word_list)):
+            word = word_list[i]
+            if TextExtracter.is_chinese(word):
+                length += len(word)
+            else:
+                length += 1
+        return length
 
 class CustomHTMLParser(HTMLParser):
     def __init__(self):

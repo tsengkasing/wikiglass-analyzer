@@ -17,6 +17,7 @@ There are some different markers that we want to trim.
   - Redirect `#REDIRECT [[text]]`
   - ...
 - Spaces & Line Break
+- Table Markers `| |- !`
 
 ## Question
 
@@ -31,3 +32,14 @@ There are some different markers that we want to trim.
   For DSL(Domain Specific Language) Markers, we can only replace them one by one using Regular Expression.
 - Spaces & Line break
   We can remove spaces & Line Break using Regular Expression.
+- Table
+  After Splitting the string into a list by space, we can filter out '|' and '|-' to skip the table markers.
+
+## Usage
+
+```python
+from wikiglass_analyzer.utilities.text_extract import TextExtracter
+
+text = '<p>hello, world!</p>'
+length = TextExtracter.len(text)
+```
